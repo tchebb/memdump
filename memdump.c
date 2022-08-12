@@ -64,7 +64,7 @@ int main (int argc, char *argv[]) {
 	if (ret == -1) {
 		perror("Could not write data");
 	} else if (ret != (ssize_t)length) {
-		fprintf(stderr, "Only wrote %d bytes\n", ret);
+		fprintf(stderr, "Only wrote %zd bytes\n", ret);
 	}
 
 	free(buf);
@@ -84,7 +84,7 @@ unsigned long parse_int (char *str) {
 	char *endptr; 
 
 	result = strtoll(str, &endptr, 0);
-	if (str == '\0' || *endptr != '\0') {
+	if (str[0] == '\0' || *endptr != '\0') {
 		fprintf(stderr, "\"%s\" is not a valid number\n", str);
 		exit(EXIT_FAILURE);
 	}
